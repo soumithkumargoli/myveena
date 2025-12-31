@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Veena</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: black;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .heart-bg {
+            position: fixed;
+            font-size: 72px;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .greeting {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-style: italic;
+            font-size: 12px;
+            z-index: 10;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .envelope-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 100;
+            opacity: 0;
+            animation: fadeIn 2s 2s forwards;
+        }
+
+        .envelope {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .envelope svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .click-text {
+            color: white;
+            font-family: 'Times New Roman', serif;
+            font-size: 6px;
+            cursor: pointer;
+            background: none;
+            border: 1px solid white;
+            padding: 5px 10px;
+            transition: all 0.3s;
+        }
+
+        .click-text:hover {
+            background: white;
+            color: black;
+        }
+
+        .message-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 75%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 10px;
+            z-index: 200;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .message-text {
+            color: black;
+            font-size: 11px;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checkbox-container label {
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .final-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            color: white;
+            font-weight: bold;
+            z-index: 300;
+            opacity: 0;
+            animation: fadeInScale 3s forwards;
+        }
+
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="greeting">Hi, Veena</div>
+
+    <div class="envelope-container" id="envelopeContainer">
+        <div class="envelope" onclick="openEnvelope()">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Heart-shaped envelope -->
+                <path d="M100,170 C100,170 30,120 30,80 C30,60 45,50 60,50 C75,50 85,60 100,75 C115,60 125,50 140,50 C155,50 170,60 170,80 C170,120 100,170 100,170 Z" 
+                      fill="#FFB6C1" stroke="#FF69B4" stroke-width="2"/>
+                <!-- Envelope flap -->
+                <path d="M100,75 L60,100 L140,100 Z" fill="#FF69B4" opacity="0.7"/>
+            </svg>
+        </div>
+        <button class="click-text" onclick="openEnvelope()">Click to open</button>
+    </div>
+
+    <div class="message-container" id="messageContainer">
+        <div class="message-text">
+            hey babe, before I tell you anything else, you should know that the only coding knowledge I have is hash int void printf-hello world. anthe😂. so before you judge all this keep that in mind. now, coming to the message, there's actually a reason why I wanted to share this with you today. I wanted to begin the new year with me telling you this, kind of symbolic of our beginning. soooo here goes, this year has been a lot for me to handle, actually every year since I went to US has just been progressively worse. even though we started talking a couple of days ago, I can confidently say that you are the best thing to happen to me in a long long long time Veena. I actually wondered you know like I know I've hurt people, and I got my due for that. was it just karma? or why am I being hurt so much an Ala. I now understand that all of it was to prepare me for you. men mature through damage and pain. all of it was just so that I could be ready for you. to know how to treat you well. I am incredibly lucky and so grateful to have found you and fallen for you and to have you fall for me was just a blessing. YOU are my blessing Veena. I have prayed literally for someone like you, nee lanti vallu osthe asal odulkonu ani. I am not going to. so thank you for coming into my life and thank you for being mine. sooooo, now that it is the new year, I want to officially ask you something. would you like to officially be my girlfriend whenever you are ready? I am ready to wait however long it takes. I have fallen for you and I do not want to get up.
+        </div>
+        <div class="checkbox-container">
+            <input type="checkbox" id="agreeCheckbox" onchange="showFinalMessage()">
+            <label for="agreeCheckbox">click yes if you agree</label>
+        </div>
+    </div>
+
+    <div class="final-message" id="finalMessage">
+        I Love You, Veena
+    </div>
+
+    <script>
+        // Create random hearts in background
+        const colors = ['#800000', '#8B0000']; // Maroon and dark red
+        for (let i = 0; i < 20; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'heart-bg';
+            heart.innerHTML = '❤';
+            heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.top = Math.random() * 100 + '%';
+            document.body.appendChild(heart);
+        }
+
+        function openEnvelope() {
+            document.getElementById('envelopeContainer').classList.add('hidden');
+            document.getElementById('messageContainer').style.display = 'block';
+        }
+
+        function showFinalMessage() {
+            const checkbox = document.getElementById('agreeCheckbox');
+            if (checkbox.checked) {
+                document.getElementById('messageContainer').classList.add('hidden');
+                document.getElementById('finalMessage').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
